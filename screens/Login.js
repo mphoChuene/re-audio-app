@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Image, KeyboardAvoidingView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  Image,
+  KeyboardAvoidingView,
+  ScrollView,
+} from "react-native";
 import { signInWithEmailAndPassword, getAuth } from "@firebase/auth";
 import Login from "../assets/Login.jpg";
 import app from "../firebaseConfig";
@@ -13,6 +22,7 @@ const LoginScreen = ({ navigation }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       // Successfully logged in
+      navigation.navigate("Home"); // Navigate to the "home" page
     } catch (error) {
       console.log("Login Error:", error);
       // Handle login error
@@ -23,11 +33,10 @@ const LoginScreen = ({ navigation }) => {
     <KeyboardAvoidingView
       style={styles.mainContainer}
       behavior="padding"
-      enabled
-    >
+      enabled>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <Text style={styles.title}>
-          Welcome to the audio recording app, please login.
+          Welcome to the audio recording app, please Login.
         </Text>
         <Image source={Login} style={styles.image} />
         <View style={styles.inputContainer}>
@@ -71,7 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    height: 200,
+    height: 330,
     width: "100%",
   },
   inputContainer: {
@@ -89,7 +98,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: "80%",
     marginVertical: 10,
-    backgroundColor: 'dodgerblue'
+    backgroundColor: "dodgerblue",
   },
 });
 

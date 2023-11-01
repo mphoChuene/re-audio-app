@@ -5,14 +5,15 @@ import {
   TextInput,
   Button,
   StyleSheet,
+  Image,
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
 import app from "../firebaseConfig";
-import {RegisterImg} from '../assets/signup.jpg'
+import RegisterImg from "../assets/signup.jpg";
 import { createUserWithEmailAndPassword, getAuth } from "@firebase/auth";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = getAuth(app); // Initialize the auth instance
@@ -21,6 +22,7 @@ const RegisterScreen = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       // Successfully registered and logged in
+      navigation.navigate("Login"); // Navigate back to the "Login" page
     } catch (error) {
       console.log("Registration Error:", error);
       // Handle registration error
@@ -34,9 +36,9 @@ const RegisterScreen = () => {
       enabled>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <Text style={styles.title}>
-          Welcome to the audio recording app, please login.
+          Welcome to the audio recording app, please register.
         </Text>
-        <Image source={Login} style={styles.image} />
+        <Image source={RegisterImg} style={styles.image} />
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Email"
@@ -57,6 +59,7 @@ const RegisterScreen = () => {
     </KeyboardAvoidingView>
   );
 };
+
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -70,11 +73,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 35,
+    fontSize: 32,
     fontWeight: "bold",
   },
   image: {
-    height: 200,
+    height: 330,
     width: "100%",
   },
   inputContainer: {
