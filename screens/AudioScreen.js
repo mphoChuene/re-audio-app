@@ -7,7 +7,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
-import audioImage from "../assets/Login.jpg"
+import recordingImage from "../assets/recording.jpg"
 import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import onAuthStateChanged
 import { app, db } from "../firebaseConfig";
 import { Audio } from "expo-av";
@@ -134,7 +134,7 @@ export default function AudioScreen() {
 
   return (
     <View style={styles.container}>
-      <Image source={audioImage} style={{ width:'100%', height: 300, marginBottom:50}}/>
+      <Image source={recordingImage} style={{ width:'100%', height: 300, marginBottom:50}}/>
       {userEmail && ( // Render the user's email if available
         <Text style={styles.welcomeMessage}>
           Welcome, {userEmail}! {/* Display the user's email */}
